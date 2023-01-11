@@ -1,0 +1,6 @@
+export const COLOR = {
+  PRIMARY: "#1D1CE5",
+  LIGHTBLUE: "#4649FF",
+  PURPLE: "#C47AFF",
+  DARKPURPLE: "#7978FF",
+};
