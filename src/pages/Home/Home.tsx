@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { Container, Typography } from "@mui/material";
 import { SearchKeyword } from "../../components/Input/SearchKeyword";
 import axios from "axios";
+import { PLACE_QUERY } from "../../API/places/query";
 
 export const Home = React.memo(() => {
   const [search, setSearch] = useState<string>("");
@@ -25,9 +26,6 @@ export const Home = React.memo(() => {
   };
 
   const getVenues = () => {
-    const endPoint =
-      process.env.REACT_APP_FOURSQUARE_API_URL + "/v3/places/search";
-
     const params = {
       //   type: "place",
       ll: position,
@@ -37,15 +35,8 @@ export const Home = React.memo(() => {
       //   oauth_token: process.env.REACT_APP_API_KEY,
       v: "20221016",
     };
-    axios
-      .get(endPoint, {
-        headers: {
-          accept: "application/json",
-          Authorization: process.env.REACT_APP_API_KEY,
-        },
-        params: { ...params },
-      })
-      .then((result) => console.log(result));
+
+    PLACE_QUERY.searchPlace(params).then((data) => console.log(data));
   };
 
   const handleSearch = async () => {
