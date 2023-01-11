@@ -12,7 +12,7 @@ interface SearchKeywordProps {
   onChange: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
-  onSearch: () => void;
+  onSearch: () => Promise<void>;
   clear: () => void;
 }
 
