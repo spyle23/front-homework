@@ -26,17 +26,25 @@ export const Home = React.memo(() => {
 
   const getVenues = () => {
     const endPoint =
-      process.env.REACT_APP_FOURSQUARE_API_URL + "/v2/venues/search/";
+      process.env.REACT_APP_FOURSQUARE_API_URL + "/v3/places/search";
+
     const params = {
-      client_id: process.env.REACT_APP_CLIENT_ID,
-      client_secret: process.env.REACT_APP_CLIENT_SECRET,
+      //   type: "place",
       ll: position,
+      client_id: process.env.REACT_APP_CLIENT_ID || "",
+      client_secret: process.env.REACT_APP_CLIENT_SECRET || "",
       query: search,
-    //   oauth_token: process.env.REACT_APP_API_KEY,
-      v: "20230111",
+      //   oauth_token: process.env.REACT_APP_API_KEY,
+      v: "20221016",
     };
     axios
-      .get(endPoint, { params: params })
+      .get(endPoint, {
+        headers: {
+          accept: "application/json",
+          Authorization: process.env.REACT_APP_API_KEY,
+        },
+        params: { ...params },
+      })
       .then((result) => console.log(result));
   };
 
