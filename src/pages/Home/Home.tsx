@@ -79,7 +79,7 @@ export const Home = React.memo(() => {
       />
       <Grid container spacing={2}>
         {places.map((place) => (
-          <Grid key={place.fsq_id} item xs={12} sm={4}>
+          <Grid key={place.fsq_id} item xs={12} sm={6} md={4}>
             <CardPresenter place={place} onClick={handleSetOpen} />
           </Grid>
         ))}
