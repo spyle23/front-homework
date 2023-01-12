@@ -52,7 +52,7 @@ export const CustomModal: FC<CustomModalProps> = React.memo(
             sx={{ position: "absolute", top: 0, right: 0 }}
             onClick={onClose}
           >
-            <CancelOutlinedIcon />
+            <CancelOutlinedIcon sx={{ color: COLOR.PURPLE }} />
           </IconButton>
           <DialogContent>
             <Box>
@@ -81,17 +81,23 @@ export const CustomModal: FC<CustomModalProps> = React.memo(
               <Typography variant="h5" sx={{ color: COLOR.PRIMARY }}>
                 Tips about this place:
               </Typography>
-              <Box sx={{ my: 1, display: "flex", justifyContent: "end" }}>
-                <Box>
-                  <Typography>Action: </Typography>
-                  <Box sx={{ display: "flex" }}>
-                    <RadioSelect
-                      sx={{ display: "flex", flexDirection: "row" }}
-                      onChange={handleChangeSort}
-                    />
+              {tips.length > 0 ? (
+                <Box sx={{ my: 1, display: "flex", justifyContent: "end" }}>
+                  <Box>
+                    <Typography>Action: </Typography>
+                    <Box sx={{ display: "flex" }}>
+                      <RadioSelect
+                        sx={{ display: "flex", flexDirection: "row" }}
+                        onChange={handleChangeSort}
+                      />
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
+              ) : (
+                <Typography sx={{ textAlign: "center" }}>
+                  No advice for this place
+                </Typography>
+              )}
               {tips.map((tip) => (
                 <TipsPresenter key={tip.id} tip={tip} />
               ))}
