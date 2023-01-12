@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { SearchKeyword } from "../../components/Input/SearchKeyword";
+import { ReactComponent as PresentationIcon } from "../../assets/Image/presentation.svg";
 import axios from "axios";
 import { PLACE_QUERY } from "../../API/places/query";
 import { IPlace } from "../../interfaces/Place";
@@ -10,12 +11,15 @@ export const Home = React.memo(() => {
   const [search, setSearch] = useState<string>("");
   const [position, setPosition] = useState<string>("");
   const [places, setPlaces] = useState<IPlace[]>([]);
+  const [isData, setIsData] = useState<boolean>(true);
   const handleChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     setSearch(e.target.value);
   };
   const handleClear = () => {
+    setIsData(true);
+    setPlaces([]);
     setSearch("");
   };
   useEffect(() => {
@@ -46,6 +50,7 @@ export const Home = React.memo(() => {
   };
 
   const handleSearch = async () => {
+    setIsData(false);
     await getVenues();
   };
   const handleSetOpen = () => {
@@ -57,7 +62,8 @@ export const Home = React.memo(() => {
         Front-homework
       </Typography>
       <SearchKeyword
-        title="Mot clé"
+        title="Keyword"
+        placeholder="Search place..."
         sx={{ my: 2 }}
         value={search}
         onChange={handleChange}
@@ -65,13 +71,33 @@ export const Home = React.memo(() => {
         onSearch={handleSearch}
       />
       <Grid container spacing={2}>
-        {places &&
-          places.map((place) => (
-            <Grid key={place.fsq_id} item xs={12} sm={4}>
-              <CardPresenter place={place} onClick={handleSetOpen} />
-            </Grid>
-          ))}
+        {places.map((place) => (
+          <Grid key={place.fsq_id} item xs={12} sm={4}>
+            <CardPresenter place={place} onClick={handleSetOpen} />
+          </Grid>
+        ))}
       </Grid>
+      {isData && (
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{ width: "30%" }} >
+            <Typography variant="body2" sx={{ fontSize: "1.5rem" }}>
+              Want to go somewhere?
+            </Typography>
+            <Typography variant="body2">
+              This app can help you to find place that you want. It's simple,
+              type the keyword of the place where you want to go
+            </Typography>
+          </Box>
+          <PresentationIcon style={{ width: "50%" }} />
+        </Box>
+      )}
     </Container>
   );
 });

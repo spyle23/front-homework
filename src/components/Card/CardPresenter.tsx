@@ -13,6 +13,7 @@ import React, { FC, useEffect, useState } from "react";
 import { PLACE_QUERY } from "../../API/places/query";
 import { CLASSIFICATION, PhotoParams, SORT } from "../../interfaces/params";
 import { IPhoto, IPlace } from "../../interfaces/Place";
+import { COLOR } from "../../utils/color";
 import { RadioSelect } from "../RadioGroup/RadioSelect";
 import { ClassificationSelect } from "../Select/ClassificationSelect";
 
@@ -70,7 +71,9 @@ export const CardPresenter: FC<CardPresenterProps> = React.memo(
           //   onClick={() => handleGetPhoto(fsq_id)}
         >
           <CardContent>
-            <Typography variant="h5">{name}</Typography>
+            <Typography variant="h5" sx={{ color: COLOR.PRIMARY }}>
+              {name}
+            </Typography>
             <Typography variant="body2">
               Catégorie: {categories[0].name}
             </Typography>
@@ -78,7 +81,9 @@ export const CardPresenter: FC<CardPresenterProps> = React.memo(
               Zone: {timezone}
             </Typography>
             <Box sx={{ my: 1 }}>
-              <Typography variant="h5">Les photos</Typography>
+              <Typography variant="h5" sx={{ color: COLOR.PRIMARY }}>
+                Les photos
+              </Typography>
               <Grid container spacing={1}>
                 {photo &&
                   photo.map(({ id, prefix, suffix, width, height }) => (

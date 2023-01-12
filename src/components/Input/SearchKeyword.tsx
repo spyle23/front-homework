@@ -35,7 +35,7 @@ export const SearchKeyword: FC<SearchKeywordProps> = React.memo(
             onChange={onChange}
             value={value}
             sx={{ ml: 1, flex: 1 }}
-            placeholder={placeholder || "Rechercher..."}
+            placeholder={placeholder || "Search..."}
           />
           {value ? (
             <IconButton sx={{ p: "10px" }} aria-label="search" onClick={clear}>
