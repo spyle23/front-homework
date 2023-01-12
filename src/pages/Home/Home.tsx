@@ -47,7 +47,6 @@ export const Home = React.memo(() => {
     };
     const data = await searchPlace(params);
     if (data) {
-      console.log(data);
       setPlaces([...data]);
     }
   };

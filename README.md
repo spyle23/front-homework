@@ -29,18 +29,26 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## The App is named Front-homework
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Architecture of this app
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In the src folder, you can see many folders. I'm going to explain you that: 
+    - The API folder contain the call api, this folder contain places folder because we need place. In this situation we can create another folder and name it likely that
+    - The assets folder contain the file like image, icon
+    - The components folder contain all of the components. Component is the base of the application UI
+    - constants contain the constant during the application runing
+    - interfaces contain the type and interface of the data
+    - pages contain all the page during the developpement of an app
+    - router contain the main router who contain the routes of this app
+    - theme is the folder who contain the configuration style based by material 
+    - utils contain the color 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## The precompiler
+The precompiler is based by create-react-app 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## framework and Ui
+Material ui is used by this app for display styled component and for a beauty view
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## template
+For this app, I'll use typescript because, it's important to type the data and use it. 
