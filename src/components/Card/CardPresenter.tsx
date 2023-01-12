@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import { PLACE_QUERY } from "../../API/places/query";
-import { CLASSIFICATION, PhotoParams } from "../../interfaces/params";
+import { CLASSIFICATION, PhotoParams, SORT } from "../../interfaces/params";
 import { IPhoto, IPlace } from "../../interfaces/Place";
 import { RadioSelect } from "../RadioGroup/RadioSelect";
 import { ClassificationSelect } from "../Select/ClassificationSelect";
@@ -56,7 +56,7 @@ export const CardPresenter: FC<CardPresenterProps> = React.memo(
       event: React.ChangeEvent<HTMLInputElement>,
       value: string
     ) => {
-      console.log(value);
+      setParamsPhoto((prev) => ({ ...prev, sort: value as SORT }));
     };
 
     return (
