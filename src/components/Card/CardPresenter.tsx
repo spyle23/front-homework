@@ -103,7 +103,11 @@ export const CardPresenter: FC<CardPresenterProps> = React.memo(
           }}
         >
           <RadioSelect
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
             onChange={handleChangeSort}
           />
           <ClassificationSelect

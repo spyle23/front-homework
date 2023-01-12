@@ -26,11 +26,13 @@ export const RadioSelect: FC<RadioSelectProps> = React.memo(({ onChange, sx }) =
       >
         <FormControlLabel
           value={SORT.POPULAR}
+          sx={{ width: "45%" }}
           control={<Radio />}
           label="popular"
         />
         <FormControlLabel
           value={SORT.NEWEST}
+          sx={{ width: "45%" }}
           control={<Radio />}
           label="newest"
         />
