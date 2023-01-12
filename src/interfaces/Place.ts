@@ -5,6 +5,16 @@ interface IIcon {
   suffix: string;
 }
 
+interface ILocation {
+  country: string;
+  cross_street: string;
+  formatted_address: string;
+  address?: string;
+  locality?: string
+  postcode?: string;
+  region?: string;
+}
+
 interface ICategory {
   name: string;
   id: number;
@@ -18,18 +28,24 @@ export interface IPlace {
   fsq_id: string;
   geocodes: any;
   link: string;
-  location: Location;
+  location: ILocation;
   name: string;
   related_places: any;
   timezone: string;
 }
 
-export interface IPhoto{
-  id: string
-  created_at: Date
-  prefix: string
-  suffix: string
-  width: number
-  height: number
-  classification: CLASSIFICATION[]
+export interface IPhoto {
+  id: string;
+  created_at: Date;
+  prefix: string;
+  suffix: string;
+  width: number;
+  height: number;
+  classification: CLASSIFICATION[];
+}
+
+export interface ITips {
+  id: string;
+  created_at: Date;
+  text: string;
 }

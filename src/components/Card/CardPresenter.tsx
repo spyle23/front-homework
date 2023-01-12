@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
-import { PLACE_QUERY } from "../../API/places/query";
+import { getPlacePhotos } from "../../API/places/query";
 import { CLASSIFICATION, PhotoParams, SORT } from "../../interfaces/params";
 import { IPhoto, IPlace } from "../../interfaces/Place";
 import { COLOR } from "../../utils/color";
@@ -19,7 +19,7 @@ import { ClassificationSelect } from "../Select/ClassificationSelect";
 
 interface CardPresenterProps {
   place: IPlace;
-  onClick: () => void;
+  onClick: (place: IPlace) => void;
   sx?: any;
 }
 
@@ -29,17 +29,9 @@ export const CardPresenter: FC<CardPresenterProps> = React.memo(
     const [paramsPhoto, setParamsPhoto] = useState<PhotoParams>();
     const { name, categories, fsq_id, timezone } = place;
 
-    // const handleGetPhoto = async (
-    //   fsq_id: string,
-    //   photoParams?: PhotoParams
-    // ) => {
-    //   const data = await PLACE_QUERY.getPlacePhotos(fsq_id);
-    //   setPhoto(data);
-    // };
-
     useEffect(() => {
       (async () => {
-        const data = await PLACE_QUERY.getPlacePhotos(fsq_id, paramsPhoto);
+        const data = await getPlacePhotos(fsq_id, paramsPhoto);
         setPhoto(data);
       })();
     }, [fsq_id, paramsPhoto]);
@@ -68,21 +60,21 @@ export const CardPresenter: FC<CardPresenterProps> = React.memo(
               opacity: 0,
             },
           }}
-          //   onClick={() => handleGetPhoto(fsq_id)}
+          onClick={() => onClick(place)}
         >
           <CardContent>
             <Typography variant="h5" sx={{ color: COLOR.PRIMARY }}>
               {name}
             </Typography>
             <Typography variant="body2">
-              Catégorie: {categories[0].name}
+              Category: {categories[0].name}
             </Typography>
             <Typography variant="body2" sx={{ mb: 1 }}>
               Zone: {timezone}
             </Typography>
             <Box sx={{ my: 1 }}>
               <Typography variant="h5" sx={{ color: COLOR.PRIMARY }}>
-                Les photos
+                Pictures
               </Typography>
               <Grid container spacing={1}>
                 {photo &&

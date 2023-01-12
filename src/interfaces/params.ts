@@ -1,3 +1,4 @@
+import { ITips } from "./Place"
 
 export enum SORT {
     POPULAR = "popular",
@@ -20,4 +21,9 @@ export interface PhotoParams {
     limit?: number
     sort?:  SORT
     classifications?: CLASSIFICATION
+}
+export interface TipsParams {
+    limit?: number
+    sort?: SORT
+    filds?: ITips
 }

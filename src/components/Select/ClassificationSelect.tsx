@@ -21,7 +21,7 @@ export const ClassificationSelect: FC<ClassificationSelectProps> = React.memo(
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          label="Age"
+          label="classification"
           onChange={onChange}
         >
           <MenuItem value={CLASSIFICATION.FOOD}>food</MenuItem>

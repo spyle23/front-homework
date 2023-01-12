@@ -3,15 +3,18 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import { SearchKeyword } from "../../components/Input/SearchKeyword";
 import { ReactComponent as PresentationIcon } from "../../assets/Image/presentation.svg";
 import axios from "axios";
-import { PLACE_QUERY } from "../../API/places/query";
+import { searchPlace } from "../../API/places/query";
 import { IPlace } from "../../interfaces/Place";
 import { CardPresenter } from "../../components/Card/CardPresenter";
+import { CustomModal } from "../../components/Dialog/CustomModal";
 
 export const Home = React.memo(() => {
   const [search, setSearch] = useState<string>("");
   const [position, setPosition] = useState<string>("");
   const [places, setPlaces] = useState<IPlace[]>([]);
+  const [placeChecked, setPlaceChecked] = useState<IPlace>();
   const [isData, setIsData] = useState<boolean>(true);
+  const [open, setOpen] = useState<boolean>(false);
   const handleChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
@@ -42,7 +45,7 @@ export const Home = React.memo(() => {
       //   oauth_token: process.env.REACT_APP_API_KEY,
       v: "20221016",
     };
-    const data = await PLACE_QUERY.searchPlace(params);
+    const data = await searchPlace(params);
     if (data) {
       console.log(data);
       setPlaces([...data]);
@@ -53,8 +56,12 @@ export const Home = React.memo(() => {
     setIsData(false);
     await getVenues();
   };
-  const handleSetOpen = () => {
-    console.log("ato");
+  const handleSetOpen = (place: IPlace) => {
+    setOpen(true);
+    setPlaceChecked(place);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
   return (
     <Container>
@@ -86,7 +93,7 @@ export const Home = React.memo(() => {
             alignItems: "center",
           }}
         >
-          <Box sx={{ width: "30%" }} >
+          <Box sx={{ width: "30%" }}>
             <Typography variant="body2" sx={{ fontSize: "1.5rem" }}>
               Want to go somewhere?
             </Typography>
@@ -97,6 +104,9 @@ export const Home = React.memo(() => {
           </Box>
           <PresentationIcon style={{ width: "50%" }} />
         </Box>
+      )}
+      {open && placeChecked && (
+        <CustomModal open={open} place={placeChecked} onClose={handleClose} />
       )}
     </Container>
   );
