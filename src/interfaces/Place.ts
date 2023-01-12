@@ -1,16 +1,18 @@
-interface Icon {
+import { CLASSIFICATION } from "./params";
+
+interface IIcon {
   prefix: string;
   suffix: string;
 }
 
-interface Category {
+interface ICategory {
   name: string;
   id: number;
-  icon: Icon;
+  icon: IIcon;
 }
 
-export interface Place {
-  categories: Category[];
+export interface IPlace {
+  categories: ICategory[];
   chains: any[];
   distance: number;
   fsq_id: string;
@@ -20,4 +22,14 @@ export interface Place {
   name: string;
   related_places: any;
   timezone: string;
+}
+
+export interface IPhoto{
+  id: string
+  created_at: Date
+  prefix: string
+  suffix: string
+  width: number
+  height: number
+  classification: CLASSIFICATION[]
 }

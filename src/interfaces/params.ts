@@ -1,7 +1,23 @@
 
+export enum SORT {
+    POPULAR = "popular",
+    NEWEST = "newest"
+}
+
+export enum CLASSIFICATION {
+    FOOD = "food",
+    INDOOR = "indoor",
+    MENU = "menu",
+    OUTDOOR = "outdoor"
+}
+
 export interface Params {
     ll: string
-    client_id: string
-    client_secret: string
     v: string
+}
+
+export interface PhotoParams {
+    limit?: number
+    sort?:  SORT
+    classifications?: CLASSIFICATION
 }
