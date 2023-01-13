@@ -9,7 +9,7 @@ import {
   SelectChangeEvent,
   Typography,
 } from "@mui/material";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { getPlacePhotos } from "../../API/places/query";
 import { CLASSIFICATION, PhotoParams, SORT } from "../../interfaces/params";
 import { IPhoto, IPlace } from "../../interfaces/Place";
@@ -36,21 +36,22 @@ export const CardPresenter: FC<CardPresenterProps> = React.memo(
       })();
     }, [fsq_id, paramsPhoto]);
 
-    const handleSelectClassification = (
-      e: SelectChangeEvent<CLASSIFICATION>
-    ) => {
-      setParamsPhoto((prev) => ({
-        ...prev,
-        classifications: e.target.value as CLASSIFICATION,
-      }));
-    };
+    const handleSelectClassification = useCallback(
+      (e: SelectChangeEvent<CLASSIFICATION>) => {
+        setParamsPhoto({
+          ...paramsPhoto,
+          classifications: e.target.value as CLASSIFICATION,
+        });
+      },
+      [paramsPhoto]
+    );
 
-    const handleChangeSort = (
-      event: React.ChangeEvent<HTMLInputElement>,
-      value: string
-    ) => {
-      setParamsPhoto((prev) => ({ ...prev, sort: value as SORT }));
-    };
+    const handleChangeSort = useCallback(
+      (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+        setParamsPhoto({ ...paramsPhoto, sort: value as SORT });
+      },
+      [paramsPhoto]
+    );
 
     return (
       <Card sx={{ height: 721, position: "relative" }}>
