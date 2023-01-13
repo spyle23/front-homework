@@ -12,7 +12,7 @@ interface SearchKeywordProps {
   onChange: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
-  onSearch: () => Promise<void>;
+  onSearch: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   clear: () => void;
 }
 
@@ -21,9 +21,10 @@ export const SearchKeyword: FC<SearchKeywordProps> = React.memo(
     return (
       <Box sx={sx}>
         <Typography variant="h5">{title}</Typography>
-        <Box
-          sx={{
-            p: "2px 4px",
+        <form
+          onSubmit={onSearch}
+          style={{
+            padding: "2px 4px",
             display: "flex",
             alignItems: "center",
             height: "43px",
@@ -43,10 +44,10 @@ export const SearchKeyword: FC<SearchKeywordProps> = React.memo(
             </IconButton>
           ) : null}
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton sx={{ p: "10px" }} aria-label="search" onClick={onSearch}>
+          <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
             <SearchIcon />
           </IconButton>
-        </Box>
+        </form>
       </Box>
     );
   }

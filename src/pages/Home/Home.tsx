@@ -51,9 +51,10 @@ export const Home = React.memo(() => {
     }
   };
 
-  const handleSearch = async () => {
-    setIsData(false);
+  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     await getVenues();
+    setIsData(false);
   };
   const handleSetOpen = (place: IPlace) => {
     setOpen(true);
